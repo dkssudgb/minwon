@@ -6,3 +6,11 @@ st.set_page_config(
 )
 
 st.markdown("# 시각화")
+
+tab1, tab2, tab3 = st.tabs(["민원 데이터", "API 데이터"])
+
+with tab1:
+   st.header("민원 데이터 시각화")
+
+with tab2:
+   st.header("API 데이터 시각화")
