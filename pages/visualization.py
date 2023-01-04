@@ -1,18 +1,88 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from PIL import Image
+import os
 
 st.set_page_config(
     page_title="시각화",
     layout="wide",
 )
 
+def load_image(img_file):
+    img = Image.open(img_file)
+    return img
+
 st.markdown("# 시각화")
 
-tab1, tab2, tab3 = st.tabs(["민원 데이터","경찰청 민원 API 데이터 시각화" ,"API 데이터"])
+tab1, tab2, tab3 = st.tabs(["전체 민원","경찰청 민원" ,"경기도 민원"])
 
 with tab1:
-   st.header("민원 데이터 시각화")
+   st.header("전체 민원 데이터 시각화📜")
+   st.markdown("")
+   st.subheader("국민신문고에서 크롤링한 데이터를 워드클라우드로 시각화")
+   st.markdown("")
+   
+   # 이미지 파일 목록 가져오기
+   img_list = os.listdir('./images')
+   img_list.remove("minwon_req.png")
+   img_list.remove("news.png")
+   img_list = [img.replace(".png", "") for img in img_list]
+   img_list.insert(0, "전체")
+   
+   # select box
+   selected1 = st.selectbox('부서 종류 선택', ["선택", "전체", "중앙처리기관", "지방자치기관", "교육기관"])
+      
+   if selected1 == "전체": # 전체 선택: 하위부서도 전체
+      selected2 = st.selectbox("하위 부서 선택", ["전체"])
+      for i in img_list[1:]:
+         st.markdown("### " + i)
+         img = load_image("./images/" + i + ".png")
+         st.image(img, width=400)
+         st.markdown("")
+
+   elif selected1 == "중앙처리기관": # 중앙처리기관 선택
+      slist = ['선택', '전체', '고용노동부', '교육부', '국무총리_4처', '국무총리_위원회', '국방부', '국토교통부', '기획재정부', '농림축산식품부', '문화체육관광부', '법무부', '보건복지부', '여성가족부', '통일부', '해양수산부', '행정안전']
+      selected2 = st.selectbox('하위 부서 선택', slist)
+      
+      if selected2 == "전체":
+         for i in slist[2:]:
+            st.markdown("### " + i)
+            img = load_image("./images/" + i + ".png")
+            st.image(img, width=400)
+            st.markdown("")
+      for s in slist[2:]:
+         if selected2 == s:
+            st.markdown("### " + s)
+            img = load_image("./images/" + s + ".png")
+            st.image(img, width=400)
+            st.markdown("")
+
+   elif selected1 == "지방자치기관":
+      selected2 = st.selectbox('하위 부서 선택', ["지방자치기관"])
+      st.markdown("### 지방자치기관")
+      img = load_image("./images/지방자치단체.png")
+      st.image(img, width=400)
+      st.markdown("")
+
+   elif selected1 == "교육기관":
+      slist = ["선택", "전체", "교육청", "대학교"]
+      selected2 = st.selectbox('하위 부서 선택', slist)
+      
+      if selected2 == "전체":
+         for i in slist[2:]:
+            st.markdown("### " + i)
+            img = load_image("./images/" + i + ".png")
+            st.image(img, width=400)
+            st.markdown("")
+      for s in slist[2:]:
+         if selected2 == s:
+            st.markdown("### " + s)
+            img = load_image("./images/" + s + ".png")
+            st.image(img, width=400)
+            st.markdown("")
+
+
 
 with tab2:
    st.header("경찰청 민원 데이터 시각화📜")
@@ -84,8 +154,10 @@ with tab2:
    st.plotly_chart(pxh3, use_container_width=True)
 
 
+
 with tab3:
-   st.header("API 데이터 시각화")
+   st.header("경기도 민원 데이터 시각화📜")
+   st.markdown("")
    area_url_1 = "https://raw.githubusercontent.com/dkssudgb/minwon/main/api_data/%EA%B2%BD%EA%B8%B0%EB%8F%84_%EB%A7%9E%EC%B6%A4%ED%98%95%ED%86%B5%EA%B3%84.csv"
    
    @st.cache
