@@ -3,7 +3,7 @@ from PIL import Image
 
 st.set_page_config(
     page_title="민원 분류 자동화 ",
-    page_icon="🔖",
+    page_icon="🗂️",
     layout="wide",
 )
 
