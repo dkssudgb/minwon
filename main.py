@@ -30,7 +30,7 @@ st.image(img_news, width=500)
 st.markdown("""민원을 신청할 때 선택한 기관이 적정 처리 기관이 아닐 경우, 해당 기관으로 이송 후 처리됩니다.
         \n알맞은 담당 기관으로 이송되는 과정에서 민원을 처리하는데 걸리는 시간은 추가적으로 소요됩니다. """)
 
-img_minwon = load_image("./images/news.png")
+img_minwon = load_image("./images/minwon_req.png")
 st.image(img_minwon, width=500)
 
 st.markdown("""하지만 사진과 같이 민원을 신청할 때 선택할 수 있는 민원의 수는 
