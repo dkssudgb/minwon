@@ -1,13 +1,9 @@
 import streamlit as st
-# from streamlit_option_menu import option_menu
 from PIL import Image
-# import pandas as pd
-# from PyPDF2 import PdfFileReader
-# import os
 
 st.set_page_config(
     page_title="민원 분류 자동화 ",
-    page_icon="🔖",
+    page_icon="🗂️",
     layout="wide",
 )
 
@@ -15,10 +11,6 @@ st.title("국민신문고 민원 담당 기관 분류 예측\n")
 st.markdown("""\n**민원**은 국민이 행정기관에 어떤 행위나 답변을 요청하는 다양한 의사표시를 통칭하는 개념으로, 
         행정의 민주화와 신뢰도를 높이고 국민들이 가장 간편하게 이용할 수 있는 행정 구제 수단으로 활용되고 있습니다.
         \n우리는 **국민신문고**를 통해서 온라인으로 편리하게 민원을 신청할 수 있습니다.\n\n\n""")
-
-# st.header("")
-# st.subheader("")
-# st.markdown("# ")
 
 def load_image(img_file):
     img = Image.open(img_file)
