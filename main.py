@@ -7,10 +7,9 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Title")
+st.title("국민신문고 민원 담당 기관 분류 예측")
 
-st.markdown("# EDA")
-st.markdown("## 주제 : 국민신문고 민원 분류 자동화 ")
+st.markdown("# ")
 
 # with st.sidebar:
 #     selected = option_menu("민원데이터 분류", ["홈", "모델 예측 결과", "모델 설명", "시각화"], 
