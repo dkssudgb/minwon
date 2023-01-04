@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
+# from streamlit_option_menu import option_menu
 
 st.set_page_config(
     page_title="국민신문고 민원 분류 자동화 ",
