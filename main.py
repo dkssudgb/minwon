@@ -7,6 +7,8 @@ st.set_page_config(
     layout="wide",
 )
 
+st.title("Title")
+
 st.markdown("# EDA")
 st.markdown("## 주제 : 국민신문고 민원 분류 자동화 ")
 
