@@ -24,11 +24,7 @@ with tab1:
    st.markdown("")
    
    # 이미지 파일 목록 가져오기
-   img_list = os.listdir('./images')
-   img_list.remove("minwon_req.png")
-   img_list.remove("news.png")
-   img_list = [img.replace(".png", "") for img in img_list]
-   img_list.insert(0, "전체")
+   img_list = ['전체', '고용노동부', '교육부', '국무총리_4처', '국무총리_위원회', '국방부', '국토교통부', '기획재정부', '농림축산식품부', '문화체육관광부', '법무부', '보건복지부', '여성가족부', '통일부', '해양수산부', '행정안전', '교육청', '대학교', '지방자치단체']
    
    # select box
    selected1 = st.selectbox('부서 종류 선택', ["선택", "전체", "중앙처리기관", "지방자치기관", "교육기관"])
