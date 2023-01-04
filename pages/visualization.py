@@ -7,7 +7,7 @@ import os
 st.set_page_config(
    page_title="시각화",
    page_icon="🏷️",
-   # layout="wide",
+   layout="wide",
 )
 
 def load_image(img_file):
