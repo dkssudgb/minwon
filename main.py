@@ -22,8 +22,8 @@ with tab1:
 
         area_col1, area_col2, area_col3 = st.columns([0.15, 0.7, 0.15])
         with area_col2:
-                img_news = load_image("./images/국민신문고.png")
-                st.image(img_news, width=700)
+                img = load_image("./images/국민신문고.png")
+                st.image(img, width=700)
 
         st.markdown("")
         st.markdown("")
@@ -43,11 +43,58 @@ with tab1:
 
         area_col1, area_col2, area_col3 = st.columns([0.15, 0.7, 0.15])
         with area_col2:
-                img_news = load_image("./images/news.png")
-                st.image(img_news, width=500)
+                img = load_image("./images/news.png")
+                st.image(img, width=500)
 
 
         st.markdown("")
         st.markdown("")
         st.markdown("그래서 저희는 이러한 불편함과 번거로움을 줄이고자")
         st.markdown(""" ### 민원 담당 부서를 지정해주는 모델을 구현해보기로 하였습니다.""")
+
+
+
+with tab2:
+        area_col1, area_col2 = st.columns(2)
+        with area_col1:
+                st.markdown("##### 대분류 기준) 민원의 개수")
+                img = load_image("./images/대분류.png")
+                st.image(img, width=500)
+        with area_col2:
+                st.markdown("##### 민원 개수 상위 50 기관")
+                st.markdown("")
+                st.markdown("")
+                img = load_image("./images/상위50.png")
+                st.image(img, width=500)
+        st.markdown("""EDA 결과 5가지 대분류를 기준으로 보았을 때 헌법기관으로 들어온 민원이 없는 것을 알 수 있었고, 
+                    \n민원 데이터의 빈도수가 기관 별로 많은 차이를 보이는 것을 확인했습니다.""")
+        
+        st.markdown('#### \"데이터의 불균형이 심해서 처리 기관(label)을 높은 정확도로 분류하는데 한계가 있다.\" ')
+        st.markdown("")
+        st.markdown("")
+        
+        st.markdown("#### 문제점 및 해결 과정")
+        st.markdown("""EDA 과정에서 얻은 인사이트를 바탕으로 프로젝트의 방향을 조금씩 수정했습니다. 
+                    \n우선 데이터의 불균형으로 총 403개의 처리 기관(label) 값을 모두 알맞게 분류해주기에는 한계가 있다고 판단해, 성질이 비슷한 처리 기관들을 묶어서 분류 label 의 수를 줄이기로 결정했습니다. 
+                    \n따라서 공공데이터 포털의 “**기획재정부_공공기관 지정현황”**(시장형 공기업, 준시장형 공기업, 위탁집행형 준정부기관, 기타공공기관에 따른 공공기관명 정보를 제공) 데이터를 추가로 수집하여, 이를 기준으로 크롤링 데이터의 처리 기관을 새롭게 분류했습니다.
+                    """)
+        st.markdown("(링크: https://www.data.go.kr/data/15088742/fileData.do)")
+        
+        area_col1, area_col2 = st.columns([0.7, 0.3])
+        with area_col1:
+                img = load_image("./images/분류new그래프.png")
+                st.image(img, width=650)
+        with area_col2:
+                img = load_image("./images/분류new.png")
+                st.image(img, width=250)
+                
+        st.markdown("""기획재정부 공공기관 지정현황 데이터를 기준으로 민원을 새롭게 분류해 모든 민원에 label 값이 존재하도록 만들었습니다. 
+                    \n하지만 각 label의 min-max 값이 2개와 4350개로, 아직 데이터 불균형의 문제를 완전히 해결되지 않아 모델 학습 시 높은 성능을 보이기는 힘들 것이라고 예상했습니다. 
+                    \n아쉽지만 프로젝트 기간을 고려해 데이터 전처리는 마무리 하고 아래의 최종 데이터셋으로 프로젝트를 진행했습니다.
+                    """)
+        
+        st.markdown("")
+        st.markdown("")
+        st.markdown("#### 최종 데이터셋")
+        img = load_image("./images/최종data.png")
+        st.image(img, width=1000)
