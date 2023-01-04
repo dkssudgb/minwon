@@ -21,7 +21,7 @@ def load_image(img_file):
     return img
 
 img = load_image("./images/news.png")
-st.image(img)
+st.image(img, width=200)
 
 # with st.sidebar:
 #     selected = option_menu("민원데이터 분류", ["홈", "모델 예측 결과", "모델 설명", "시각화"], 
