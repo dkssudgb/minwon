@@ -23,7 +23,7 @@ with tab1:
         area_col1, area_col2, area_col3 = st.columns([0.15, 0.7, 0.15])
         with area_col2:
                 img = load_image("./images/국민신문고.png")
-                st.image(img, width=700)
+                st.image(img)
 
         st.markdown("")
         st.markdown("")
